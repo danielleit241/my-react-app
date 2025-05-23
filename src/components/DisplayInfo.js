@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayInfo.scss";
 import logo from "../logo.svg";
 
@@ -42,6 +42,20 @@ const DisplayInfo = (props) => {
   const handleShowHideListUsers = () => {
     setShowHideListUser(!isShowHideListUser);
   };
+
+  console.log(">>> call render");
+  
+  useEffect(() => {
+    setTimeout(() => {
+      document.title = "React Hooks";
+    }, 3000);
+    if (listUsers.length === 0) {
+      alert("No user found");
+    }
+    console.log(">>> call useEffect");
+  }, [listUsers]);
+
+
 
   return (
     <div className="display-info-container">
