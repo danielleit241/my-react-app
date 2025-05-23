@@ -21,12 +21,12 @@ class MyComponent extends React.Component {
   //DRY: Don't Repeat Yourself
   render() {
     return (
-      <div>
+      <>
         <AddUserInfo handleAddNewUser={this.handleAddNewUser} />
         <br />
         <br />
         <DisplayInfo listUsers={this.state.listUsers} />
-      </div>
+      </>
     );
   }
 }
