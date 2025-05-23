@@ -1,4 +1,5 @@
 import React from "react";
+import "./DisplayInfo.scss";
 
 class DisplayInfo extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class DisplayInfo extends React.Component {
     const { listUsers } = this.props;
     //const listUsers = this.props.listUsers;
     return (
-      <div>
+      <div className="display-info-container">
         <div>
           <span
             onClick={(event) => {
