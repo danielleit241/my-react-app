@@ -5,8 +5,8 @@ import DisplayInfo from "./DisplayInfo";
 class MyComponent extends React.Component {
   state = {
     listUsers: [
-      { id: 1, name: "Leit", age: 21 },
-      { id: 2, name: "Danile", age: 22 },
+      { id: 1, name: "Leit", age: 16 },
+      { id: 2, name: "Danile", age: 69 },
       { id: 3, name: "Le", age: 23 },
     ],
   };
@@ -18,9 +18,7 @@ class MyComponent extends React.Component {
         <UserInfo />
         <br />
         <br />
-        <DisplayInfo
-          listUsers={this.state.listUsers}
-        />
+        <DisplayInfo listUsers={this.state.listUsers} />
       </div>
     );
   }
