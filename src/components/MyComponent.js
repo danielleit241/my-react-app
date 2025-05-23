@@ -40,6 +40,7 @@ class MyComponent extends React.Component {
         My name is {this.state.name} and I'm {this.state.age} years old.
         <form onSubmit={(event) => this.handleOnSumit(event)}>
           <input
+            value={this.state.name}
             type="text"
             onChange={(event) => this.handleOnChangeInput(event)}
           />
