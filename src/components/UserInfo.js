@@ -35,14 +35,12 @@ class UserInfo extends React.Component {
             type="text"
             onChange={(event) => this.handleOnChangeName(event)}
           />
-          <br />
           <lable>Your Age: </lable>
           <input
             value={this.state.age}
             type="text"
             onChange={(event) => this.handleOnChangeAge(event)}
           />
-          <br />
           <button>Submit</button>
         </form>
       </div>
