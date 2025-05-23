@@ -29,13 +29,13 @@ class UserInfo extends React.Component {
       <div>
         My name is {this.state.name} and I'm {this.state.age} years old.
         <form onSubmit={(event) => this.handleOnSumit(event)}>
-          <lable>Your Name: </lable>
+          <label>Your Name: </label>
           <input
             value={this.state.name}
             type="text"
             onChange={(event) => this.handleOnChangeName(event)}
           />
-          <lable>Your Age: </lable>
+          <label>Your Age: </label>
           <input
             value={this.state.age}
             type="text"
