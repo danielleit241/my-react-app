@@ -2,13 +2,76 @@ body {
   padding: 0px;
 }
 
+@media (min-width: 992px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: 1300px !important;
+  }
+}
+
 .app-container {
   .header-container {
+    .btn-login {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 0 15px;
+      border: 1px solid #777474;
+      height: 40px;
+    }
+    .btn-signup {
+      background: black;
+      border-radius: 5px;
+      padding: 0 15px;
+      color: white;
+      font-weight: bold;
+      height: 40px;
+      cursor: pointer;
+      &:hover {
+        background: #ffffff;
+        color: rgb(0, 0, 0);
+      }
+    }
     .navbar-nav {
+      padding-top: 20px;
       z-index: 10;
       opacity: 0.9;
       .nav-link.active {
         color: #00bfff;
+      }
+    }
+  }
+  .homepage-container {
+    .homepage-content {
+      position: relative;
+      padding: 100px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .header {
+        font-size: 4rem;
+        font-weight: bold;
+      }
+      .sub-header {
+        font-size: 1.2rem;
+      }
+      .button-container {
+        button {
+          border-radius: 5px;
+          height: 40px;
+          padding: 0 15px;
+          border: 1px solid #777474;
+          font-weight: bold;
+          background-color: black;
+          color: white;
+          cursor: pointer;
+          &:hover {
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+          }
+        }
       }
     }
   }
