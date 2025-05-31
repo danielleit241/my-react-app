@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFileEarmarkPlus } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
@@ -34,17 +35,25 @@ const ModalCreateUser = (props) => {
     }
   };
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleSubmitCreateUser = async () => {
     //validate input
-
-    //call api to create user
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   userImage: image,
-    // };
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      toast.error("Invalid email address");
+      return;
+    }
+    if (!password) {
+      toast.error("Invalid password");
+      return;
+    }
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
@@ -56,7 +65,14 @@ const ModalCreateUser = (props) => {
       "http://localhost:8081/api/v1/participant",
       formData
     );
-    console.log("check res: ", res);
+    if (res && res.data && res.data.EC === 0) {
+      toast.success(res.data.EM);
+      handleClose();
+    }
+    if (res.data && res.data.EC !== 0) {
+      toast.error(res.data.EM);
+      return;
+    }
   };
 
   return (
