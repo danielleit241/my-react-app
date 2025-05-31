@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { postCreateNewUser } from "../../../services/apiService";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
@@ -25,7 +25,6 @@ const ModalCreateUser = (props) => {
   const [image, setImage] = useState(null);
 
   const [previewImage, setPreviewImage] = useState("");
-  //https://imgv3.fotor.com/images/videoImage/wonderland-girl-generated-by-Fotor-ai-art-generator.jpg
   const handleUploadImage = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
@@ -54,23 +53,14 @@ const ModalCreateUser = (props) => {
       toast.error("Invalid password");
       return;
     }
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("username", username);
-    formData.append("role", role);
-    formData.append("userImage", image);
 
-    let res = await axios.post(
-      "http://localhost:8081/api/v1/participant",
-      formData
-    );
-    if (res && res.data && res.data.EC === 0) {
-      toast.success(res.data.EM);
+    let data = await postCreateNewUser(email, password, username, role, image);
+    if (data && data.EC === 0) {
+      toast.success(data.EM);
       handleClose();
     }
-    if (res.data && res.data.EC !== 0) {
-      toast.error(res.data.EM);
+    if (data && data.EC !== 0) {
+      toast.error(data.EM);
       return;
     }
   };
