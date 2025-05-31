@@ -18,6 +18,7 @@ import {
 } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
 import sidebarBg from "../../assets/bg2.jpg";
+import { Link } from "react-router-dom";
 import "./SideBar.scss";
 
 const SideBar = (props) => {
@@ -51,14 +52,21 @@ const SideBar = (props) => {
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
-            <MenuItem icon={<FaGem />}>components</MenuItem>
+            <MenuItem icon={<FaTachometerAlt />}>
+              <Link to="./">Dashboard</Link>
+            </MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu icon={<FaGem />} title="Features">
-              <MenuItem>Manage users</MenuItem>
-              <MenuItem>Manage quizs</MenuItem>
-              <MenuItem>Manage questions</MenuItem>
+              <MenuItem>
+                <Link to="./manage-users">Manage users</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="./manage-quizs">Manage quizs</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="./manage-questions">Manage questions</Link>
+              </MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
