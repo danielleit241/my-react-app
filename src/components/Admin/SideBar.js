@@ -16,8 +16,9 @@ import {
   FaRegLaughWink,
   FaHeart,
 } from "react-icons/fa";
-
+import { FaReact } from "react-icons/fa";
 import sidebarBg from "../../assets/bg2.jpg";
+import "./SideBar.scss";
 
 const SideBar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -43,28 +44,21 @@ const SideBar = (props) => {
               whiteSpace: "nowrap",
             }}
           >
-            Daniel Le
+            <FaReact size={"3rem"} color={"#00bfff"} />
+            <span>Daniel Le</span>
           </div>
         </SidebarHeader>
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem
-              icon={<FaTachometerAlt />}
-              suffix={<span className="badge red">new</span>}
-            >
-              dashboard
-            </MenuItem>
+            <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
             <MenuItem icon={<FaGem />}>components</MenuItem>
           </Menu>
           <Menu iconShape="circle">
-            <SubMenu
-              suffix={<span className="badge yellow">3</span>}
-              icon={<FaRegLaughWink />}
-            >
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+            <SubMenu icon={<FaGem />} title="Features">
+              <MenuItem>Manage users</MenuItem>
+              <MenuItem>Manage quizs</MenuItem>
+              <MenuItem>Manage questions</MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
@@ -77,7 +71,7 @@ const SideBar = (props) => {
             }}
           >
             <a
-              href="https://github.com/azouaoui-med/react-pro-sidebar"
+              href="https://github.com/danielleit241/my-react-app"
               target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer"
