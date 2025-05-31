@@ -2,6 +2,7 @@ import ModalCreateUser from "./ModalCreateUser";
 import "./ManageUser.scss";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { useState } from "react";
+import TableUser from "./TableUser";
 const ManageUser = (props) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -18,7 +19,9 @@ const ManageUser = (props) => {
             Add new users
           </button>
         </div>
-        <div className="table-users-container">table of users</div>
+        <div className="table-users-container">
+          <TableUser />
+        </div>
         <ModalCreateUser show={showModal} setShow={setShowModal} />
       </div>
     </div>
