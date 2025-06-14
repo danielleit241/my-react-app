@@ -1,7 +1,6 @@
 import ModalCreateUser from "./ModalCreateUser";
 import "./ManageUser.scss";
 import { BsFileEarmarkPlus } from "react-icons/bs";
-import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import {
   getAllUsers,
@@ -13,7 +12,7 @@ import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = (props) => {
-  const LIMIT_USER = 1;
+  const LIMIT_USER = 4;
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   const [showModalViewUser, setShowModalViewUser] = useState(false);

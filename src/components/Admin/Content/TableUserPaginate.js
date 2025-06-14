@@ -1,5 +1,4 @@
 import ReactPaginate from "react-paginate";
-import { useState, useEffect } from "react";
 
 const TableUserPaginate = (props) => {
   const { listUsers, pageCount } = props;
