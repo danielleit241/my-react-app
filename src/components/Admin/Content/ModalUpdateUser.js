@@ -3,9 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/apiService";
+import { putUpdateUser } from "../../../services/apiService";
 import _ from "lodash";
-import { data } from "react-router-dom";
 
 const ModalUpdateUser = (props) => {
   const { show, setShow, dataUpdate } = props;
@@ -18,6 +17,7 @@ const ModalUpdateUser = (props) => {
     setRole("USER");
     setImage(null);
     setPreviewImage("");
+    props.resetUpdateData();
   };
 
   const [email, setEmail] = useState("");
@@ -48,30 +48,12 @@ const ModalUpdateUser = (props) => {
     }
   };
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
   const handleSubmitCreateUser = async () => {
-    const isValidEmail = validateEmail(email);
-    if (!isValidEmail) {
-      toast.error("Invalid email address");
-      return;
-    }
-    if (!password) {
-      toast.error("Invalid password");
-      return;
-    }
-
-    let data = await postCreateNewUser(email, password, username, role, image);
+    let data = await putUpdateUser(dataUpdate.id, username, role, image);
     if (data && data.EC === 0) {
       toast.success(data.EM);
-      await props.fetchListUsers(); // Fetch the updated list of users
       handleClose();
+      await props.fetchListUsers();
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);
