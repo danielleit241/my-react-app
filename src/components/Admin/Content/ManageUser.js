@@ -114,7 +114,6 @@ const ManageUser = (props) => {
           fetchListUsersWithPaginate={fetchListUsersWithPaginate}
           resetUpdateData={resetUpdateData}
           currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
         />
         <ModalViewUser
           show={showModalViewUser}
