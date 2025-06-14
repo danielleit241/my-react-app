@@ -4,9 +4,13 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModalCreateUser, setShowModalCreateUser] = useState(false);
+  const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState({});
+
   const [listUsers, setListUsers] = useState([]);
   useEffect(() => {
     fetchListUsers();
@@ -19,6 +23,11 @@ const ManageUser = (props) => {
     }
   };
 
+  const handleClickBtnUpdate = (user) => {
+    setShowModalUpdateUser(true);
+    setDataUpdate(user);
+  };
+
   return (
     <div className="manage-users-container">
       <div className="title">ManageUser</div>
@@ -26,19 +35,27 @@ const ManageUser = (props) => {
         <div className="btn-add-new">
           <button
             className="btn btn-primary"
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowModalCreateUser(true)}
           >
             <BsFileEarmarkPlus className="icon" />
             Add new users
           </button>
         </div>
         <div className="table-users-container">
-          <TableUser listUsers={listUsers} />
+          <TableUser
+            listUsers={listUsers}
+            handleClickBtnUpdate={handleClickBtnUpdate}
+          />
         </div>
         <ModalCreateUser
-          show={showModal}
-          setShow={setShowModal}
+          show={showModalCreateUser}
+          setShow={setShowModalCreateUser}
           fetchListUsers={fetchListUsers}
+        />
+        <ModalUpdateUser
+          show={showModalUpdateUser}
+          setShow={setShowModalUpdateUser}
+          dataUpdate={dataUpdate}
         />
       </div>
     </div>
