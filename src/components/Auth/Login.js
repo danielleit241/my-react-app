@@ -5,23 +5,28 @@ import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
+import { ImSpinner3 } from "react-icons/im";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
+    setIsLoading(true);
     let res = await postLogin(email, password);
     console.log(res.EC);
     if (res && +res.EC === 0) {
       dispatch(doLogin(res));
       toast.success(res.EM);
+      setIsLoading(false);
       navigate("/");
     }
     if (res && +res.EC !== 0) {
       toast.error(res.EM);
+      setIsLoading(false);
       return;
     }
   };
@@ -58,8 +63,13 @@ const Login = (props) => {
         </div>
         <span className="forgot-password">Forgot your password ?</span>
         <div className="form-group">
-          <button onClick={() => handleLogin()} className="btn-submit">
-            Login
+          <button
+            onClick={() => handleLogin()}
+            className="btn-submit"
+            disabled={isLoading}
+          >
+            {isLoading && <ImSpinner3 className="loader-icon" />}
+            <span>Log in</span>
           </button>
         </div>
         <div className="back">

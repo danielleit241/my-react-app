@@ -1,5 +1,7 @@
 import axios from "../utils/axiosCustomize";
 
+const DELAY = 5000; // Delay for simulating slow network
+
 const postCreateNewUser = async (email, password, username, role, image) => {
   const formData = new FormData();
   formData.append("email", email);
@@ -34,7 +36,11 @@ const getUsersWithPaginate = async (page, limit) => {
 };
 
 const postLogin = async (email, password) => {
-  return axios.post(`api/v1/login`, { email: email, password: password });
+  return axios.post(`api/v1/login`, {
+    email: email,
+    password: password,
+    delay: DELAY,
+  });
 };
 
 const postRegister = async (email, password, username) => {
