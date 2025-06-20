@@ -1,4 +1,4 @@
-import axios from "../../utils/axiosCustomize";
+import axios from "../utils/axiosCustomize";
 
 const postCreateNewUser = async (email, password, username, role, image) => {
   const formData = new FormData();
@@ -37,6 +37,14 @@ const postLogin = async (email, password) => {
   return axios.post(`api/v1/login`, { email: email, password: password });
 };
 
+const postRegister = async (email, password, username) => {
+  return axios.post(`api/v1/register`, {
+    email: email,
+    password: password,
+    username: username,
+  });
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
@@ -44,4 +52,5 @@ export {
   deleteDeleteUser,
   getUsersWithPaginate,
   postLogin,
+  postRegister,
 };

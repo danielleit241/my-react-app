@@ -2,7 +2,10 @@ import ModalCreateUser from "./ModalCreateUser";
 import "./ManageUser.scss";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getAllUsers, getUsersWithPaginate } from "../../services/apiService";
+import {
+  getAllUsers,
+  getUsersWithPaginate,
+} from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
